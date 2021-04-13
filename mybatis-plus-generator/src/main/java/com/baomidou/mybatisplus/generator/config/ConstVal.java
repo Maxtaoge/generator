@@ -16,7 +16,6 @@
 package com.baomidou.mybatisplus.generator.config;
 
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
-
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -43,6 +42,8 @@ public interface ConstVal {
     String MAPPER_PATH = "mapper_path";
     String XML_PATH = "xml_path";
     String CONTROLLER_PATH = "controller_path";
+
+    String FILE_NAME = "fileName";
 
     String JAVA_TMPDIR = "java.io.tmpdir";
     String UTF8 = StandardCharsets.UTF_8.name();

@@ -16,10 +16,17 @@
 package com.baomidou.mybatisplus.generator.config;
 
 import com.baomidou.mybatisplus.core.toolkit.Assert;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 输出文件配置
@@ -33,14 +40,20 @@ public abstract class FileOutConfig {
      * 模板
      */
     private String templatePath;
-
+    /**
+     * 模板
+     */
+    private String templateName;
+    /**
+     * 模板
+     */
+    private String templateFilePath;
     /**
      * 默认构造方法
      *
      * @see #FileOutConfig(String)
      * @deprecated 3.5.0
      */
-    @Deprecated
     public FileOutConfig() {
         // to do nothing
     }
@@ -53,7 +66,7 @@ public abstract class FileOutConfig {
     /**
      * 输出文件
      */
-    public abstract File outputFile(@NotNull TableInfo tableInfo);
+    public abstract File outputFile(@NotNull TableInfo tableInfo, AbstractTemplateEngine abstractTemplateEngine,Map<String, Object> objectMap);
 
     /**
      * @param templatePath 模块路径
@@ -61,12 +74,18 @@ public abstract class FileOutConfig {
      * @see #FileOutConfig(String)
      * @deprecated 3.5.0
      */
-    @Deprecated
     public FileOutConfig setTemplatePath(@NotNull String templatePath) {
         this.templatePath = templatePath;
         return this;
     }
-
+    public FileOutConfig setTemplateName(@NotNull String templateName) {
+        this.templateName = templateName;
+        return this;
+    }
+    public FileOutConfig setTemplateFilePath(@NotNull String templateFilePath) {
+        this.templateFilePath = templateFilePath;
+        return this;
+    }
     /**
      * 获取模板路径信息
      *
@@ -75,5 +94,13 @@ public abstract class FileOutConfig {
     @NotNull
     public String getTemplatePath() {
         return templatePath;
+    }
+
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    public String getTemplateFilePath() {
+        return templateFilePath;
     }
 }
