@@ -16,3 +16,5 @@ dependencies {
     testImplementation "${lib.firebird}"
     testImplementation "${lib.'swagger-annotations'}"
 }
+apply plugin: 'java'
+apply plugin: 'maven'
