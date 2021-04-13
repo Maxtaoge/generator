@@ -15,6 +15,7 @@
  */
 package com.baomidou.mybatisplus.generator.config.builder;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -22,11 +23,12 @@ import com.baomidou.mybatisplus.generator.config.ConstVal;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
-
 import java.io.File;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 路径信息处理
@@ -34,7 +36,9 @@ import java.util.Map;
  * @author nieqiurong 2020/10/6.
  * @since 3.5.0
  */
-class PathInfoHandler {
+public class PathInfoHandler {
+
+    public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final Map<String, String> pathInfo = new HashMap<>();
 
@@ -46,6 +50,7 @@ class PathInfoHandler {
         this.outputDir = globalConfig.getOutputDir();
         this.packageConfig = packageConfig;
         Map<String, String> pathInfo = packageConfig.getPathInfo();
+
         if (CollectionUtils.isNotEmpty(pathInfo)) {
             this.pathInfo.putAll(pathInfo);
         } else {
@@ -56,6 +61,8 @@ class PathInfoHandler {
             putPathInfo(templateConfig.getServiceImpl(), ConstVal.SERVICE_IMPL_PATH, ConstVal.SERVICE_IMPL);
             putPathInfo(templateConfig.getController(), ConstVal.CONTROLLER_PATH, ConstVal.CONTROLLER);
         }
+        logger.debug("包信息{}", JSONObject.toJSONString(getPathInfo()));
+
     }
 
     public Map<String, String> getPathInfo() {
@@ -63,7 +70,9 @@ class PathInfoHandler {
     }
 
     private void putPathInfo(String template, String path, String module) {
-        if (StringUtils.isNotBlank(template)) pathInfo.put(path, joinPath(outputDir, packageConfig.getPackageInfo(module)));
+        if (StringUtils.isNotBlank(template)) {
+            pathInfo.put(path, joinPath(outputDir, packageConfig.getPackageInfo(module)));
+        }
     }
 
     /**

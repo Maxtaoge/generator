@@ -1,127 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.tgm</groupId>
-  <artifactId>mybatis-plus-generator</artifactId>
-  <version>3.5.0.1-SNAPSHOT</version>
-  <dependencies>
-    <dependency>
-      <groupId>com.baomidou</groupId>
-      <artifactId>mybatis-plus</artifactId>
-      <version>3.4.2</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jetbrains</groupId>
-      <artifactId>annotations</artifactId>
-      <version>16.0.2</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.velocity</groupId>
-      <artifactId>velocity-engine-core</artifactId>
-      <version>2.2</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.freemarker</groupId>
-      <artifactId>freemarker</artifactId>
-      <version>2.3.30</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.ibeetl</groupId>
-      <artifactId>beetl</artifactId>
-      <version>3.2.1.RELEASE</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.16.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.6.2</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-junit-jupiter</artifactId>
-      <version>3.4.4</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jodd</groupId>
-      <artifactId>jodd-lagarto</artifactId>
-      <version>5.1.5</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
-      <scope>compile</scope>
-    </dependency>
-      <dependency>
-          <groupId>com.microsoft.sqlserver</groupId>
-          <artifactId>sqljdbc4</artifactId>
-          <version>4.0</version>
-          <scope>test</scope>
-      </dependency>
-      <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-      <version>42.2.14</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>1.4.200</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>8.0.21</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.xerial</groupId>
-      <artifactId>sqlite-jdbc</artifactId>
-      <version>3.32.3.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.firebirdsql.jdbc</groupId>
-      <artifactId>jaybird</artifactId>
-      <version>4.0.1.java8</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.swagger</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <version>1.6.2</version>
-      <scope>test</scope>
-    </dependency>
-      <!-- spring boot test-->
-      <dependency>
-          <artifactId>spring-boot-starter-test</artifactId>
-          <groupId>org.springframework.boot</groupId>
-          <version>2.2.0.RELEASE</version>
-          <scope>test</scope>
-      </dependency>
-      <dependency>
-          <artifactId>lombok</artifactId>
-          <groupId>org.projectlombok</groupId>
-          <version>${lombok.version}</version>
-          <scope>test</scope>
-      </dependency>
-  </dependencies>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>mybatis-plus-generator</artifactId>
     <build>
         <plugins>
             <plugin>
@@ -152,24 +33,147 @@
                 <version>3.0.0-M5</version>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.0</version>
-                <!-- 绑定source插件到Maven的生命周期,并在生命周期后执行绑定的source的goal -->
                 <executions>
                     <execution>
                         <!-- 绑定source插件到Maven的生命周期 -->
-                        <phase>compile</phase>
-                        <!--在生命周期后执行绑定的source插件的goals -->
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
+                        <!--在生命周期后执行绑定的source插件的goals -->
+                        <phase>compile</phase>
                     </execution>
                 </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <!-- 绑定source插件到Maven的生命周期,并在生命周期后执行绑定的source的goal -->
+                <version>3.0.0</version>
             </plugin>
         </plugins>
     </build>
-    <!-- 公用依赖 尽可能少 这里 单元测试  -->
+    <dependencies>
+        <dependency>
+            <artifactId>mybatis-plus</artifactId>
+            <groupId>com.baomidou</groupId>
+            <scope>compile</scope>
+            <version>3.4.2</version>
+        </dependency>
+        <dependency>
+            <artifactId>annotations</artifactId>
+            <groupId>org.jetbrains</groupId>
+            <scope>compile</scope>
+            <version>16.0.2</version>
+        </dependency>
+        <dependency>
+            <artifactId>velocity-engine-core</artifactId>
+            <groupId>org.apache.velocity</groupId>
+            <scope>compile</scope>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <artifactId>freemarker</artifactId>
+            <groupId>org.freemarker</groupId>
+            <scope>compile</scope>
+            <version>2.3.30</version>
+        </dependency>
+        <dependency>
+            <artifactId>beetl</artifactId>
+            <groupId>com.ibeetl</groupId>
+            <scope>compile</scope>
+            <version>3.2.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <artifactId>assertj-core</artifactId>
+            <groupId>org.assertj</groupId>
+            <scope>test</scope>
+            <version>3.16.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>junit-jupiter-api</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <scope>test</scope>
+            <version>5.6.2</version>
+        </dependency>
+        <dependency>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <groupId>org.mockito</groupId>
+            <scope>test</scope>
+            <version>3.4.4</version>
+        </dependency>
+        <dependency>
+            <artifactId>jodd-lagarto</artifactId>
+            <groupId>org.jodd</groupId>
+            <scope>test</scope>
+            <version>5.1.5</version>
+        </dependency>
+        <dependency>
+            <artifactId>logback-classic</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <scope>compile</scope>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <artifactId>sqljdbc4</artifactId>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <scope>test</scope>
+            <version>4.0</version>
+        </dependency>
+        <dependency>
+            <artifactId>postgresql</artifactId>
+            <groupId>org.postgresql</groupId>
+            <scope>test</scope>
+            <version>42.2.14</version>
+        </dependency>
+        <dependency>
+            <artifactId>h2</artifactId>
+            <groupId>com.h2database</groupId>
+            <scope>test</scope>
+            <version>1.4.200</version>
+        </dependency>
+        <dependency>
+            <artifactId>mysql-connector-java</artifactId>
+            <groupId>mysql</groupId>
+            <scope>test</scope>
+            <version>8.0.21</version>
+        </dependency>
+        <dependency>
+            <artifactId>sqlite-jdbc</artifactId>
+            <groupId>org.xerial</groupId>
+            <scope>test</scope>
+            <version>3.32.3.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>jaybird</artifactId>
+            <groupId>org.firebirdsql.jdbc</groupId>
+            <scope>test</scope>
+            <version>4.0.1.java8</version>
+        </dependency>
+        <dependency>
+            <artifactId>swagger-annotations</artifactId>
+            <groupId>io.swagger</groupId>
+            <scope>test</scope>
+            <version>1.6.2</version>
+        </dependency>
+        <!-- spring boot test-->
+        <dependency>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <scope>test</scope>
+            <version>2.2.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <artifactId>lombok</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <scope>test</scope>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <artifactId>fastjson</artifactId>
+            <groupId>com.alibaba</groupId>
+            <version>${fastjson.version}</version>
+        </dependency>
+    </dependencies>
+    <groupId>com.tgm</groupId>
+    <modelVersion>4.0.0</modelVersion>
     <properties>
         <alibaba.version>2.2.0.RELEASE</alibaba.version>
         <druid.version>1.1.23</druid.version>
@@ -192,4 +196,6 @@
         <swagger.version>2.9.2</swagger.version>
         <versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
     </properties>
+    <!-- 公用依赖 尽可能少 这里 单元测试  -->
+    <version>3.5.0.1-SNAPSHOT</version>
 </project>

@@ -45,6 +45,7 @@ import org.slf4j.LoggerFactory;
  * @author hubin
  * @since 2018-01-10
  */
+
 public abstract class AbstractTemplateEngine {
 
     public final Logger logger = LoggerFactory.getLogger(this.getClass());

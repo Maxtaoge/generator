@@ -21,6 +21,8 @@ import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import java.io.File;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 输出文件配置
@@ -30,6 +32,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class SmFileOutConfig extends FileOutConfig {
 
+    public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public File outputFile(@NotNull TableInfo tableInfo, AbstractTemplateEngine abstractTemplateEngine,
@@ -41,6 +44,7 @@ public class SmFileOutConfig extends FileOutConfig {
         if (StringUtils.isNotBlank(entityName) && StringUtils.isNotBlank(templateFilePath)) {
             String entityFile = String
                 .format((templateFilePath + File.separator + "%s" + abstractTemplateEngine.suffixJavaOrKt()), fileName);
+            logger.debug("输出文件路径{}", entityFile);
             return new File(entityFile);
         }
         return null;
