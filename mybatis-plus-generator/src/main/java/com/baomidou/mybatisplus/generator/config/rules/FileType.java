@@ -22,13 +22,6 @@ package com.baomidou.mybatisplus.generator.config.rules;
  * @since 2018-08-07
  * @deprecated 3.5.0
  */
-@Deprecated
 public enum FileType {
-    ENTITY,
-    MAPPER,
-    XML,
-    SERVICE,
-    SERVICE_IMPL,
-    CONTROLLER,
-    OTHER
+    ENTITY, MAPPER, XML, SERVICE, SERVICE_IMPL, CONTROLLER, OTHER
 }

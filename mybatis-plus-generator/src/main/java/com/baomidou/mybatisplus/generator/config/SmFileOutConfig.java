@@ -17,6 +17,7 @@ package com.baomidou.mybatisplus.generator.config;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.FileType;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import java.io.File;
 import java.util.Map;
@@ -42,10 +43,18 @@ public class SmFileOutConfig extends FileOutConfig {
         objectMap.put(getTemplateName(), fileName);
         String templateFilePath = getTemplateFilePath();
         if (StringUtils.isNotBlank(entityName) && StringUtils.isNotBlank(templateFilePath)) {
-            String entityFile = String
-                .format((templateFilePath + File.separator + "%s" + abstractTemplateEngine.suffixJavaOrKt()), fileName);
-            logger.debug("输出文件路径{}", entityFile);
-            return new File(entityFile);
+            if (templateFilePath.indexOf("xml") != -1) {
+                String entityFile = String.format((templateFilePath + File.separator + "%s" + FileType.XML), fileName);
+                logger.debug("输出文件路径{}", entityFile);
+                return new File(entityFile);
+            } else {
+                String entityFile = String
+                    .format((templateFilePath + File.separator + "%s" + abstractTemplateEngine.suffixJavaOrKt()),
+                        fileName);
+                logger.debug("输出文件路径{}", entityFile);
+                return new File(entityFile);
+            }
+
         }
         return null;
     }
