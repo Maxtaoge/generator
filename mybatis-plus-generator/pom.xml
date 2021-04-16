@@ -172,7 +172,20 @@
             <version>${fastjson.version}</version>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <name>maven-releases</name>
+            <url>http://192.168.6.166:8082/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <name>maven-snapshots</name>
+            <url>https://maven.smilemall.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <groupId>com.tgm</groupId>
+
     <modelVersion>4.0.0</modelVersion>
     <properties>
         <alibaba.version>2.2.0.RELEASE</alibaba.version>

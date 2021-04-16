@@ -38,7 +38,7 @@ public class SmFileOutConfig extends FileOutConfig {
     public File outputFile(@NotNull TableInfo tableInfo, AbstractTemplateEngine abstractTemplateEngine,
         Map<String, Object> objectMap) {
         String entityName = tableInfo.getEntityName();
-        String fileName = entityName + getTemplateName();
+        String fileName = String.format(getTemplateName(), entityName);
         objectMap.put(getTemplateName(), fileName);
         String templateFilePath = getTemplateFilePath();
         if (StringUtils.isNotBlank(entityName) && StringUtils.isNotBlank(templateFilePath)) {
