@@ -47,24 +47,37 @@ public class SmFileOutConfig extends FileOutConfig {
         if (getUserSubName()) {
             entityName = namesString;
         }
-        String fileName = String.format(getTemplateName(), entityName);
+        String fileName = getTemplateName();
+        try {
+            fileName = String.format(getTemplateName(), entityName);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
         objectMap.put("subParentName", subParentName);
         objectMap.put("subName", namesString);
         StringSubstitutor sub = new StringSubstitutor(objectMap);
-        String resolvedString = sub.replace(fileName);
-        objectMap.put(getTemplateName(), resolvedString);
+        fileName = sub.replace(fileName);
+        objectMap.put(getTemplateName(), fileName);
         String templateFilePath = getTemplateFilePath();
         if (StringUtils.isNotBlank(entityName) && StringUtils.isNotBlank(templateFilePath)) {
             if (templateFilePath.indexOf("xml") != -1) {
                 String entityFile = String
                     .format((templateFilePath + File.separator + "%s" + ConstVal.XML_SUFFIX), fileName);
-                logger.debug("输出文件路径{}", entityFile);
+                try {
+                    logger.debug("输出文件路径{}", entityFile);
+                } catch (Exception e) {
+                    logger.error(e.getMessage(), e);
+                }
                 return new File(entityFile);
             } else {
                 String entityFile = String
                     .format((templateFilePath + File.separator + "%s" + abstractTemplateEngine.suffixJavaOrKt()),
                         fileName);
-                logger.debug("输出文件路径{}", entityFile);
+                try {
+                    logger.debug("输出文件路径{}", entityFile);
+                } catch (Exception e) {
+                    logger.error(e.getMessage(), e);
+                }
                 return new File(entityFile);
             }
 
