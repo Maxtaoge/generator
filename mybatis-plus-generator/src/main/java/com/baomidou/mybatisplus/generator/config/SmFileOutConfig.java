@@ -18,6 +18,7 @@ package com.baomidou.mybatisplus.generator.config;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
+import com.baomidou.mybatisplus.generator.util.CamelCaseUtil;
 import java.io.File;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +39,16 @@ public class SmFileOutConfig extends FileOutConfig {
     public File outputFile(@NotNull TableInfo tableInfo, AbstractTemplateEngine abstractTemplateEngine,
         Map<String, Object> objectMap) {
         String entityName = tableInfo.getEntityName();
+        String names[] = tableInfo.getName().split("_", 3);
+        String namesString = CamelCaseUtil.toCapitalizeCamelCase(names[2]);
+        String subParentName = CamelCaseUtil.toCapitalizeCamelCase(names[1]);
+        logger.info("namesString" + namesString);
+        if (getUserSubName()) {
+            entityName = namesString;
+        }
         String fileName = String.format(getTemplateName(), entityName);
+        objectMap.put("subParentName", subParentName);
+        objectMap.put("subName", namesString);
         objectMap.put(getTemplateName(), fileName);
         String templateFilePath = getTemplateFilePath();
         if (StringUtils.isNotBlank(entityName) && StringUtils.isNotBlank(templateFilePath)) {

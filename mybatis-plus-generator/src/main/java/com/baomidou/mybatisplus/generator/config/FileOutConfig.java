@@ -16,17 +16,11 @@
 package com.baomidou.mybatisplus.generator.config;
 
 import com.baomidou.mybatisplus.core.toolkit.Assert;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.generator.config.builder.ConfigBuilder;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.File;
-import org.jetbrains.annotations.Nullable;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 输出文件配置
@@ -47,7 +41,12 @@ public abstract class FileOutConfig {
     /**
      * 模板
      */
+    private Boolean userSubName;
+    /**
+     * 模板
+     */
     private String templateFilePath;
+
     /**
      * 默认构造方法
      *
@@ -66,7 +65,18 @@ public abstract class FileOutConfig {
     /**
      * 输出文件
      */
-    public abstract File outputFile(@NotNull TableInfo tableInfo, AbstractTemplateEngine abstractTemplateEngine,Map<String, Object> objectMap);
+    public abstract File outputFile(@NotNull TableInfo tableInfo, AbstractTemplateEngine abstractTemplateEngine,
+        Map<String, Object> objectMap);
+
+    /**
+     * 获取模板路径信息
+     *
+     * @return 模板路径信息
+     */
+    @NotNull
+    public String getTemplatePath() {
+        return templatePath;
+    }
 
     /**
      * @param templatePath 模块路径
@@ -78,29 +88,34 @@ public abstract class FileOutConfig {
         this.templatePath = templatePath;
         return this;
     }
-    public FileOutConfig setTemplateName(@NotNull String templateName) {
-        this.templateName = templateName;
-        return this;
-    }
-    public FileOutConfig setTemplateFilePath(@NotNull String templateFilePath) {
-        this.templateFilePath = templateFilePath;
-        return this;
-    }
-    /**
-     * 获取模板路径信息
-     *
-     * @return 模板路径信息
-     */
-    @NotNull
-    public String getTemplatePath() {
-        return templatePath;
-    }
 
     public String getTemplateName() {
         return templateName;
     }
 
+    public FileOutConfig setTemplateName(@NotNull String templateName) {
+        this.templateName = templateName;
+        return this;
+    }
+
     public String getTemplateFilePath() {
         return templateFilePath;
+    }
+
+    public FileOutConfig setTemplateFilePath(@NotNull String templateFilePath) {
+        this.templateFilePath = templateFilePath;
+        return this;
+    }
+
+    public Boolean getUserSubName() {
+        if (userSubName == null) {
+            userSubName = Boolean.FALSE;
+        }
+        return userSubName;
+    }
+
+    public FileOutConfig setUserSubName(Boolean userSubName) {
+        this.userSubName = userSubName;
+        return this;
     }
 }
