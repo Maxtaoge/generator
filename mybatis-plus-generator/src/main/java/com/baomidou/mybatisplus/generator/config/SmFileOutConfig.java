@@ -21,6 +21,7 @@ import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
 import com.baomidou.mybatisplus.generator.util.CamelCaseUtil;
 import java.io.File;
 import java.util.Map;
+import org.apache.commons.text.StringSubstitutor;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,9 @@ public class SmFileOutConfig extends FileOutConfig {
         String fileName = String.format(getTemplateName(), entityName);
         objectMap.put("subParentName", subParentName);
         objectMap.put("subName", namesString);
-        objectMap.put(getTemplateName(), fileName);
+        StringSubstitutor sub = new StringSubstitutor(objectMap);
+        String resolvedString = sub.replace(fileName);
+        objectMap.put(getTemplateName(), resolvedString);
         String templateFilePath = getTemplateFilePath();
         if (StringUtils.isNotBlank(entityName) && StringUtils.isNotBlank(templateFilePath)) {
             if (templateFilePath.indexOf("xml") != -1) {

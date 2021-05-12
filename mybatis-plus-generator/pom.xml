@@ -171,6 +171,11 @@
             <groupId>com.alibaba</groupId>
             <version>${fastjson.version}</version>
         </dependency>
+        <dependency>
+            <artifactId>commons-text</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <version>1.8</version>
+        </dependency>
     </dependencies>
     <distributionManagement>
         <repository>
